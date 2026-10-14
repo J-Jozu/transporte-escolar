@@ -1,0 +1,432 @@
+
+:root {
+    --azul: #174a83;
+    --azul-oscuro: #10365f;
+    --amarillo: #f5c542;
+    --fondo: #f2f5f9;
+    --texto: #263445;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+/* DISTRIBUCIÓN PRINCIPAL */
+
+.register-layout {
+    display: grid;
+    grid-template-columns: 42% 58%;
+    min-height: 100vh;
+}
+
+/* PANEL IZQUIERDO */
+
+.image-panel {
+    background: var(--azul);
+    color: white;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-content {
+    width: 100%;
+    max-width: 480px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+
+.brand i {
+    color: var(--amarillo);
+    font-size: 35px;
+}
+
+.image-placeholder {
+    min-height: 240px;
+    border: 2px dashed rgba(255, 255, 255, 0.6);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.image-placeholder > i {
+    font-size: 78px;
+    color: var(--amarillo);
+    margin-bottom: 14px;
+}
+
+.image-placeholder p {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.image-placeholder small {
+    color: #d9e6f5;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.image-message h1 {
+    font-size: clamp(25px, 2.5vw, 34px);
+    line-height: 1.25;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.image-message p {
+    color: #e0eaf6;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.image-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    padding-top: 20px;
+    font-size: 13px;
+    color: #edf3fa;
+}
+
+.image-footer i {
+    color: var(--amarillo);
+    font-size: 22px;
+}
+
+/* PANEL DERECHO */
+
+.form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 32px;
+    min-width: 0;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 690px;
+    padding: 28px 32px;
+    background: white;
+    border: 1px solid #dce3ec;
+    border-top: 5px solid var(--amarillo);
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(25, 50, 80, 0.07);
+}
+
+.form-heading {
+    margin-bottom: 22px;
+}
+
+.section-label {
+    color: var(--azul);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.form-heading h2 {
+    color: var(--azul);
+    font-size: 27px;
+    font-weight: 700;
+    margin: 7px 0;
+}
+
+.form-heading p {
+    color: #667386;
+    font-size: 14px;
+    margin: 0;
+}
+
+.mobile-brand {
+    display: none;
+}
+
+/* DOS COLUMNAS */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px 18px;
+}
+
+.form-field {
+    min-width: 0;
+}
+
+.form-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.input-group-text {
+    min-width: 42px;
+    justify-content: center;
+    background: #edf3fa;
+    border-color: #cbd5e1;
+    color: var(--azul);
+}
+
+.form-control {
+    min-width: 0;
+    height: 44px;
+    border-color: #cbd5e1;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 0.2rem rgba(23, 74, 131, 0.12);
+}
+
+.toggle-password {
+    min-width: 40px;
+    border-color: #cbd5e1;
+}
+
+/* INFORMACIÓN Y BOTONES */
+
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 13px;
+    margin: 20px 0 15px;
+    border: 1px solid #f1d878;
+    border-radius: 7px;
+    background: #fff8dc;
+    color: #574719;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.info-box i {
+    color: var(--azul);
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.btn-register {
+    width: 100%;
+    min-height: 47px;
+    border: 2px solid var(--azul);
+    border-radius: 7px;
+    background: var(--azul);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.btn-register:hover {
+    background: var(--azul-oscuro);
+    border-color: var(--azul-oscuro);
+    color: white;
+}
+
+.btn-register i {
+    margin-right: 7px;
+}
+
+.login-link {
+    margin-top: 17px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.login-link a {
+    color: var(--azul);
+    font-weight: 700;
+}
+
+.login-link a:hover {
+    color: var(--azul-oscuro);
+}
+
+.form-footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #6c7888;
+    font-size: 11px;
+}
+
+/* PANTALLAS BAJAS: REDUCIR ESPACIADO */
+
+@media (min-width: 901px) and (max-height: 800px) {
+    .image-panel {
+        padding: 20px 28px;
+    }
+
+    .brand {
+        margin-bottom: 20px;
+    }
+
+    .image-placeholder {
+        min-height: 170px;
+        margin-bottom: 20px;
+    }
+
+    .image-placeholder > i {
+        font-size: 55px;
+        margin-bottom: 8px;
+    }
+
+    .image-message h1 {
+        font-size: 27px;
+    }
+
+    .image-message p {
+        margin-bottom: 16px;
+    }
+
+    .form-panel {
+        padding: 12px 24px;
+    }
+
+    .register-card {
+        padding: 20px 26px;
+    }
+
+    .form-heading {
+        margin-bottom: 16px;
+    }
+
+    .form-heading h2 {
+        font-size: 24px;
+    }
+
+    .form-grid {
+        gap: 12px 15px;
+    }
+
+    .info-box {
+        margin: 14px 0 12px;
+        padding: 9px 12px;
+    }
+
+    .form-footer {
+        margin-top: 13px;
+    }
+}
+
+/* TABLETAS Y MÓVILES */
+
+@media (max-width: 900px) {
+    .register-layout {
+        display: block;
+        min-height: 100vh;
+    }
+
+    .image-panel {
+        padding: 20px;
+    }
+
+    .image-content {
+        max-width: 620px;
+    }
+
+    .brand {
+        margin-bottom: 0;
+        justify-content: center;
+    }
+
+    .image-placeholder,
+    .image-message,
+    .image-footer {
+        display: none;
+    }
+
+    .form-panel {
+        padding: 22px 16px;
+    }
+
+    .register-card {
+        max-width: 620px;
+        padding: 25px;
+    }
+
+    .mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+        color: var(--azul);
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .mobile-brand i {
+        color: #c49300;
+        font-size: 25px;
+    }
+}
+
+/* MÓVILES ESTRECHOS */
+
+@media (max-width: 520px) {
+    .image-panel {
+        padding: 14px;
+    }
+
+    .brand {
+        font-size: 18px;
+    }
+
+    .brand i {
+        font-size: 29px;
+    }
+
+    .form-panel {
+        padding: 14px 12px 24px;
+        align-items: flex-start;
+    }
+
+    .register-card {
+        padding: 21px 17px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .form-heading h2 {
+        font-size: 23px;
+    }
+
+    .form-heading {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,139 @@
+-- =========================================================
+-- SISTEMA DE GESTIÓN Y SEGUIMIENTO DEL TRANSPORTE ESCOLAR
+-- Esquema inicial para Supabase / PostgreSQL
+--
+-- Nota:
+-- - Las contraseñas se gestionan con Supabase Auth.
+-- - Este esquema NO almacena ubicaciones GPS del bus.
+-- - Waze se utiliza para navegación; no se crea ubicaciones_bus.
+-- - Configura RLS y sus políticas antes de conectar la aplicación.
+-- =========================================================
+
+create extension if not exists pgcrypto;
+
+-- 1. USUARIOS
+create table if not exists public.usuarios (
+    id_usuario uuid primary key references auth.users(id) on delete cascade,
+    nombre varchar(100) not null,
+    apellido varchar(100) not null,
+    correo varchar(150) not null unique,
+    telefono varchar(20),
+    rol varchar(20) not null
+        check (rol in ('administrador', 'conductor', 'acudiente')),
+    estado boolean not null default true,
+    fecha_creacion timestamptz not null default now()
+);
+
+-- 2. CONDUCTORES
+create table if not exists public.conductores (
+    id_conductor uuid primary key default gen_random_uuid(),
+    id_usuario uuid not null unique
+        references public.usuarios(id_usuario) on delete restrict,
+    numero_licencia varchar(50) not null unique,
+    estado boolean not null default true
+);
+
+-- 3. RUTAS
+create table if not exists public.rutas (
+    id_ruta uuid primary key default gen_random_uuid(),
+    nombre varchar(100) not null,
+    origen varchar(200),
+    destino varchar(200),
+    estado boolean not null default true,
+    fecha_creacion timestamptz not null default now()
+);
+
+-- 4. PARADAS
+create table if not exists public.paradas (
+    id_parada uuid primary key default gen_random_uuid(),
+    id_ruta uuid not null
+        references public.rutas(id_ruta) on delete restrict,
+    nombre varchar(100) not null,
+    direccion varchar(250),
+    latitud numeric(10,7) check (latitud between -90 and 90),
+    longitud numeric(10,7) check (longitud between -180 and 180),
+    orden integer not null check (orden > 0),
+    estado boolean not null default true,
+    unique (id_ruta, orden),
+    -- Necesario para validar que la parada pertenezca a la ruta.
+    unique (id_ruta, id_parada)
+);
+
+-- 5. BUSES
+create table if not exists public.buses (
+    id_bus uuid primary key default gen_random_uuid(),
+    placa varchar(20) not null unique,
+    marca varchar(50),
+    modelo varchar(50),
+    capacidad integer not null check (capacidad > 0),
+    id_conductor uuid references public.conductores(id_conductor) on delete restrict,
+    estado boolean not null default true
+);
+
+-- 6. ESTUDIANTES
+create table if not exists public.estudiantes (
+    id_estudiante uuid primary key default gen_random_uuid(),
+    nombre varchar(100) not null,
+    segundo_nombre varchar(100) not null,
+    apellido varchar(100) not null,
+    segundo_apellido varchar(100) not null,
+    identificacion varchar(30) unique,
+    grado varchar(30),
+    id_acudiente uuid references public.usuarios(id_usuario) on delete restrict,
+    codigo_qr uuid not null unique default gen_random_uuid(),
+    estado boolean not null default true,
+    fecha_registro timestamptz not null default now()
+);
+
+-- 7. ESTUDIANTES_ZONAS
+-- Asigna estudiantes a rutas y, opcionalmente, a su parada habitual.
+create table if not exists public.estudiantes_zonas (
+    id_estudiante_zona uuid primary key default gen_random_uuid(),
+    id_estudiante uuid not null
+        references public.estudiantes(id_estudiante) on delete restrict,
+    id_ruta uuid not null
+        references public.rutas(id_ruta) on delete restrict,
+    id_parada uuid,
+    fecha_asignacion timestamptz not null default now(),
+    estado boolean not null default true,
+    unique (id_estudiante, id_ruta),
+    constraint estudiantes_zonas_parada_fk
+        foreign key (id_ruta, id_parada)
+        references public.paradas(id_ruta, id_parada)
+        deferrable initially immediate
+);
+
+-- 8. ASISTENCIAS
+create table if not exists public.asistencias (
+    id_asistencia uuid primary key default gen_random_uuid(),
+    id_estudiante uuid not null
+        references public.estudiantes(id_estudiante) on delete restrict,
+    id_parada uuid references public.paradas(id_parada) on delete restrict,
+    tipo_evento varchar(30) not null
+        check (tipo_evento in ('subio_al_bus', 'llego_a_la_escuela', 'bajo_del_bus')),
+    fecha_hora timestamptz not null default now(),
+    id_conductor uuid not null
+        references public.conductores(id_conductor) on delete restrict
+);
+
+-- ÍNDICES PARA CONSULTAS FRECUENTES
+create index if not exists idx_estudiantes_acudiente
+    on public.estudiantes(id_acudiente);
+
+create index if not exists idx_buses_conductor
+    on public.buses(id_conductor);
+
+create index if not exists idx_paradas_ruta_orden
+    on public.paradas(id_ruta, orden);
+
+create index if not exists idx_estudiantes_zonas_estudiante
+    on public.estudiantes_zonas(id_estudiante);
+
+create index if not exists idx_estudiantes_zonas_ruta
+    on public.estudiantes_zonas(id_ruta);
+
+create index if not exists idx_asistencias_estudiante_fecha
+    on public.asistencias(id_estudiante, fecha_hora desc);
+
+-- FIN DEL ESQUEMA
+-- Antes de conectar la aplicación, configura RLS y políticas de acceso.
