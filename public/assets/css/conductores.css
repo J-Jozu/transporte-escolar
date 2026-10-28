@@ -1,0 +1,437 @@
+
+/* =====================================================
+   MIRUTA - GESTIÓN DE CONDUCTORES
+   Reutiliza el diseño de dashboard.css
+   ===================================================== */
+
+.conductores-content {
+    min-width: 0;
+}
+
+.conductores-heading {
+    margin-bottom: 20px;
+}
+
+.conductores-heading h2 {
+    margin-bottom: 6px;
+}
+
+/* Resumen de conductores */
+
+.conductores-resumen {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.conductor-stat {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+    padding: 17px;
+    background: #fff;
+    border: 1px solid #e1e7ef;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgb(20 43 75 / 4%);
+}
+
+.conductor-stat-icon {
+    display: flex;
+    flex: 0 0 43px;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 10px;
+    background: #e9f0fb;
+    color: #173b70;
+    font-size: 20px;
+}
+
+.conductor-stat-icon.activo {
+    background: #e2f5e9;
+    color: #187344;
+}
+
+.conductor-stat-icon.inactivo {
+    background: #fce9e7;
+    color: #a33129;
+}
+
+.conductor-stat span {
+    display: block;
+    margin-bottom: 5px;
+    color: #68778b;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.conductor-stat strong {
+    color: #173b70;
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+/* Distribución del formulario y la lista: 25 % / 75 % */
+
+.conductores-layout {
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) minmax(0, 3fr);
+    align-items: start;
+    gap: 18px;
+    width: 100%;
+}
+
+.conductor-form-panel,
+.conductor-list-panel {
+    min-width: 0;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.conductor-form-panel .panel-heading,
+.conductor-list-panel .panel-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 20px;
+}
+
+.conductor-form-panel .panel-heading h3,
+.conductor-list-panel .panel-heading h3 {
+    margin: 0 0 5px;
+    color: #102b50;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.conductor-form-panel .panel-heading p,
+.conductor-list-panel .panel-heading p {
+    margin: 0;
+    color: #68778b;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+/* Formulario compacto */
+
+.conductor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.conductor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.conductor-field label {
+    color: #243247;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.conductor-field input,
+.conductor-field select {
+    width: 100%;
+    min-width: 0;
+    min-height: 39px;
+    padding: 9px 10px;
+    border: 1px solid #ccd5e1;
+    border-radius: 7px;
+    background: #fff;
+    color: #243247;
+    font: inherit;
+    font-size: 13px;
+}
+
+.conductor-field input:focus,
+.conductor-field select:focus {
+    border-color: #173b70;
+    outline: 3px solid rgb(23 59 112 / 12%);
+}
+
+.conductor-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.conductor-form-actions .btn {
+    flex: 1 1 auto;
+    min-height: 39px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.conductor-form-actions .btn-primary {
+    border-color: #173b70;
+    background: #173b70;
+}
+
+.conductor-form-actions .btn-primary:hover {
+    border-color: #102b50;
+    background: #102b50;
+}
+
+/* Encabezado de la lista y búsqueda */
+
+.conductor-list-heading {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.panel-heading-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+.conductor-search {
+    position: relative;
+    flex: 0 1 280px;
+    min-width: 170px;
+}
+
+.conductor-search > i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    color: #68778b;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.conductor-search input {
+    width: 100%;
+    min-height: 40px;
+    padding: 9px 12px 9px 35px;
+    border: 1px solid #ccd5e1;
+    border-radius: 7px;
+    background: #fff;
+    color: #243247;
+    font-size: 13px;
+}
+
+.conductor-search input:focus {
+    border-color: #173b70;
+    outline: 3px solid rgb(23 59 112 / 12%);
+}
+
+/* Tabla */
+
+.conductor-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.conductor-table {
+    width: 100%;
+    margin-bottom: 0;
+    border-collapse: collapse;
+    vertical-align: middle;
+}
+
+.conductor-table thead th {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e1e7ef;
+    background: #f2f5fa;
+    color: #526278;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.conductor-table tbody td {
+    padding: 13px 10px;
+    border-bottom: 1px solid #e1e7ef;
+    color: #243247;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.conductor-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.conductor-table tbody tr:hover td {
+    background: #fafbfd;
+}
+
+.conductor-table td strong {
+    color: #102b50;
+}
+
+.conductor-table tr[hidden] {
+    display: none !important;
+}
+
+.fila-conductor-detalle {
+    cursor: pointer;
+}
+
+.fila-conductor-detalle:focus-visible {
+    outline: 2px solid #173b70;
+    outline-offset: -2px;
+}
+
+/* Estado */
+
+.conductor-estado {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.conductor-estado.estado-activo {
+    background: #e2f5e9;
+    color: #187344;
+}
+
+.conductor-estado.estado-inactivo {
+    background: #fce9e7;
+    color: #a33129;
+}
+
+.conductor-list-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 14px;
+    color: #68778b;
+    font-size: 12px;
+}
+
+.conductor-list-footer strong {
+    color: #173b70;
+}
+
+/* Mensajes */
+
+.conductores-content > .alert {
+    margin-bottom: 18px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+
+/* Formulario arriba y listado debajo */
+.conductores-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    min-width: 0;
+}
+
+.conductor-form-panel,
+.conductor-list-panel {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Formulario horizontal */
+.conductor-form {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    align-items: end;
+}
+
+.conductor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.conductor-form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.conductor-form-actions .btn {
+    min-width: 120px;
+}
+
+/* La lista aprovecha todo el ancho */
+.conductor-list-panel {
+    overflow: hidden;
+}
+
+.conductor-list-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.conductor-search {
+    flex: 0 1 280px;
+    min-width: 180px;
+}
+
+/* En pantallas medianas */
+@media (max-width: 1000px) {
+    .conductor-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* En móviles */
+@media (max-width: 600px) {
+    .conductor-form {
+        grid-template-columns: 1fr;
+    }
+
+    .conductor-form-actions {
+        flex-direction: column;
+    }
+
+    .conductor-form-actions .btn {
+        width: 100%;
+    }
+
+    .conductor-list-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .conductor-search {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+        .btn-eliminar-registro {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 7px;
+    }
+
+    .btn-eliminar-registro:hover {
+        color: #fff;
+    }
+}

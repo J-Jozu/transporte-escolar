@@ -1,0 +1,317 @@
+/* Contenido de gestión de buses */
+.buses-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.buses-content .page-heading h2 {
+    margin-bottom: 6px;
+}
+
+.buses-content .page-heading p {
+    margin-bottom: 0;
+    color: #6b7280;
+}
+
+/* Tarjetas de resumen */
+.buses-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.bus-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    min-width: 0;
+}
+
+.bus-summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: #eef2ff;
+    color: #4338ca;
+    font-size: 23px;
+}
+
+.bus-summary-icon.active-icon {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.bus-summary-icon.inactive-icon {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.bus-summary-card span {
+    display: block;
+    margin-bottom: 4px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.bus-summary-card strong {
+    display: block;
+    color: #111827;
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+/* Paneles */
+.bus-panel {
+    width: 100%;
+    min-width: 0;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.bus-panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.bus-panel-heading h5 {
+    margin: 0 0 6px;
+    color: #111827;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.bus-panel-heading h5 i {
+    margin-right: 7px;
+}
+
+.bus-panel-heading p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* Formulario horizontal */
+.bus-form {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+}
+
+.bus-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.bus-field label {
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.bus-field .form-control,
+.bus-field .form-select {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    border-color: #d1d5db;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.bus-field .form-control:focus,
+.bus-field .form-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgb(99 102 241 / 12%);
+}
+
+.bus-conductor-field {
+    grid-column: span 2;
+}
+
+.bus-form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 4px;
+}
+
+.bus-form-actions .btn {
+    min-height: 40px;
+    padding: 9px 18px;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+/* Búsqueda */
+.bus-search {
+    position: relative;
+    flex: 0 1 280px;
+    min-width: 180px;
+}
+
+.bus-search i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    z-index: 1;
+    color: #9ca3af;
+    transform: translateY(-50%);
+}
+
+.bus-search .form-control {
+    min-height: 40px;
+    padding-left: 36px;
+    border-color: #d1d5db;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+/* Tabla */
+.bus-list-panel {
+    overflow: hidden;
+}
+
+.bus-table {
+    margin-bottom: 0;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.bus-table thead th {
+    padding: 13px 12px;
+    background: #f9fafb;
+    color: #4b5563;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 600;
+}
+
+.bus-table tbody td {
+    padding: 14px 12px;
+    color: #374151;
+    border-bottom-color: #f1f5f9;
+}
+
+.bus-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.bus-table tbody tr:hover {
+    background: #fafafa;
+}
+
+.fila-bus-detalle {
+    cursor: pointer;
+}
+
+.fila-bus-detalle:focus-visible {
+    outline: 2px solid #4338ca;
+    outline-offset: -2px;
+}
+
+.bus-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.bus-unassigned {
+    color: #6b7280;
+    font-style: italic;
+}
+
+.bus-unassigned i {
+    margin-right: 4px;
+}
+
+/* Adaptación a pantallas medianas */
+@media (max-width: 1000px) {
+    .bus-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bus-conductor-field {
+        grid-column: span 2;
+    }
+}
+
+/* Adaptación a móviles */
+@media (max-width: 600px) {
+    .buses-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .bus-panel {
+        padding: 16px;
+    }
+
+    .bus-form {
+        grid-template-columns: 1fr;
+    }
+
+    .bus-conductor-field {
+        grid-column: auto;
+    }
+
+    .bus-form-actions {
+        flex-direction: column;
+    }
+
+    .bus-form-actions .btn {
+        width: 100%;
+    }
+
+    .bus-list-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .bus-search {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .btn-eliminar-registro {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 7px;
+    }
+
+    .btn-eliminar-registro:hover {
+        color: #fff;
+    }
+}
